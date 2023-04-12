@@ -83,13 +83,12 @@
                                 <label for="">Kota/Kabupaten</label>
                                 <select name="city_origin" id="" class="form-control">
                                     <option value="#">-</option>
-                                    
                                 </select>
                             </div>
                             <h5 class="text-muted">Tujuan Pengirim:</h5>
                             <div class="form-group">
                                 <label for="">Kota/Kabupaten</label>
-                                <select name="destination" id="" class="form-control">
+                                <select name="destination" id="destination" class="form-control">
                                     <option value="#">-</option>
                                 </select>
                             </div>
