@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\City;
 use App\Models\Courier;
 use App\Models\Province;
+use Kavist\RajaOngkir\Facades\RajaOngkir;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -70,7 +71,28 @@ class HomeController extends Controller
     }
 
     public function store(Request $request){
-        dd($request->all());
+        $courier = $request->input('courier');
+
+        if ($courier) {
+
+            $result = [];
+
+            foreach ($courier as $value) {
+                $cost = RajaOngkir::ongkosKirim([
+                    'origin'        => $request->city_origin,    // ID kota/kabupaten asal
+                    'destination'   => $request->destination,    // ID kota/kabupaten tujuan
+                    'weight'        => 1300,                    // berat barang dalam gram
+                    'courier'       => $value    // kode kurir pengiriman: ['jne', 'tiki', 'pos'] untuk starter
+                ])->get(); 
+
+                $result[] = $cost;
+
+            }
+
+            return $result;
+
+        }
+
     }
 
 }
